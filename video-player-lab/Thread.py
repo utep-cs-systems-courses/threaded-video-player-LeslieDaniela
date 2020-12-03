@@ -3,7 +3,6 @@
 
 import threading
 import cv2
-import numpy as np
 
 
 # global varaibles
@@ -15,6 +14,8 @@ class Queue:
     def __init__(self):
         self.queue = []
         self.lock = threading.Lock()
+        
+        # producer / consumer queues bounded at 10 frames
         self.full = threading.Semaphore(10)
         self.empty = threading.Semaphore(0)
 
