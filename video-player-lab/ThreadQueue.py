@@ -4,8 +4,8 @@ class ThreadQueue(): # queue implemented with python list
     def __init__(self):
         self.queue = []
         self.lock = threading.Lock()
-        self.full = threading.Semaphore(0)
-        self.empty = threading.Semaphore(24)
+        self.full = threading.Semaphore(10)
+        self.empty = threading.Semaphore(0)
 
     def put(self, item): # enqueue
         self.empty.acquire()
