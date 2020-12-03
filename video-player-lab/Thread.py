@@ -2,7 +2,6 @@
 
 
 import threading
-import threading from Semaphore
 import cv2
 import numpy as np
 
@@ -12,12 +11,12 @@ videoFile = 'clip.mp4'
 frameDelay = 42
 delimiter = "\0"
 
-class Threading:
+class Queue:
     def __init__(self):
         self.queue = []
         self.lock = threading.Lock()
-        self.full = threading.Semaphore(0)
-        self.empty = threading.Semaphore(24)
+        self.full = threading.Semaphore(10)
+        self.empty = threading.Semaphore(0)
 
 
     def enqueue(self, item):
@@ -114,8 +113,8 @@ def displayFrames(frames):
 
 if __name__ == "__main__":
 
-    colorFrames = Threading()
-    grayFrames = Threading()
+    colorFrames = Queue()
+    grayFrames = Queue()
 
     # three functions needed: extract frames, convert frames to grayscale,
     # and display frames at original framerate (24fps)
